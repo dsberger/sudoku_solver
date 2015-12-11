@@ -4,6 +4,10 @@ class SolutionValidator
     @matrix = matrix
   end
 
+  def solved?
+    valid? && complete?
+  end
+
   def valid?
     valid_rows? &&
     valid_columns? &&
