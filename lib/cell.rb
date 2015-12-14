@@ -13,11 +13,15 @@ class Cell
   end
 
   def remove!(n)
-    state.delete(n) unless solved?
+    able_to_remove = can_take_action_on(n)
+    state.delete(n) if able_to_remove
+    able_to_remove
   end
 
   def solve!(n)
-    @state = [n] if state.include?(n)
+    able_to_solve = can_take_action_on(n)
+    @state = [n] if able_to_solve
+    able_to_solve
   end
 
   private
@@ -26,6 +30,10 @@ class Cell
 
   def solved?
     state.length == 1
+  end
+
+  def can_take_action_on(n)
+    !solved? && state.include?(n)
   end
 
   def set_state(value)

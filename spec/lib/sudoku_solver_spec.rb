@@ -2,31 +2,31 @@ require "sudoku_solver"
 
 describe SudokuSolver do
   describe ".solve" do
-    xit "returns a solved puzzle" do
+    it "returns a solved puzzle" do
       puzzle = open_sudoku_puzzle("solved")
 
       expect(SudokuSolver.solve(puzzle)).to eq(easy_solution)
     end
 
-    xit "solves a puzzle with one square left" do
+    it "solves a puzzle with one square left" do
       puzzle = open_sudoku_puzzle("one_left")
 
       expect(SudokuSolver.solve(puzzle)).to eq(easy_solution)
     end
 
-    xit "solves a puzzle with one subgroup empty" do
+    it "solves a puzzle with one subgroup empty" do
       puzzle = open_sudoku_puzzle("empty_subgroup")
 
       expect(SudokuSolver.solve(puzzle)).to eq(easy_solution)
     end
 
-    xit "solves an easy puzzle" do
+    it "solves an easy puzzle" do
       puzzle = open_sudoku_puzzle("easy")
 
       expect(SudokuSolver.solve(puzzle)).to eq(easy_solution)
     end
 
-    xit "solves an hard puzzle" do
+    it "solves an hard puzzle" do
       puzzle = open_sudoku_puzzle("hard")
 
       expect(SudokuSolver.solve(puzzle)).to eq(hard_solution)

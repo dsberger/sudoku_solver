@@ -13,8 +13,7 @@ class SudokuSolver
   end
 
   def solve
-    matrix = Grid.new_from_matrix(duped_matrix).result
-    # matrix = GraphSearcher.new(duped_matrix).result
+    matrix = GraphSearcher.new(duped_matrix).result
     PuzzleFormatter.new(matrix).puzzle_string
   end
 

@@ -60,16 +60,38 @@ describe Cell do
   end
 
   describe "#remove!" do
-    it "removes the integer from the array of possible values" do
-      cell = Cell.new
-      cell.remove!(2)
-      expect(cell.possibilities).to eq [1,3,4,5,6,7,8,9]
+    context "when the argument is in the array of possible values" do
+      it "removes the integer from the array" do
+        cell = Cell.new
+        cell.remove!(2)
+        expect(cell.possibilities).to eq [1,3,4,5,6,7,8,9]
+      end
+
+      it "returns true" do
+        cell = Cell.new
+        expect(cell.remove!(2)).to eq true
+      end
     end
 
-    it "does not delete the only remaining value" do
-      cell = Cell.new(4)
-      cell.remove!(4)
-      expect(cell.value).to eq 4
+    context "when the argument is not in the array of possible values" do
+      it "returns false" do
+        cell = Cell.new
+        (1..7).each { |n| cell.remove!(n)}
+        expect(cell.remove!(1)).to eq false
+      end
+    end
+
+    context "when the argument is the only remaining value" do
+      it "does not delete the only remaining value" do
+        cell = Cell.new(4)
+        cell.remove!(4)
+        expect(cell.value).to eq 4
+      end
+
+      it "returns false" do
+        cell = Cell.new(4)
+        expect(cell.remove!(4)).to eq false
+      end
     end
   end
 
@@ -81,6 +103,12 @@ describe Cell do
         cell.solve!(8)
         expect(cell.value).to eq 8
       end
+
+      it "returns true" do
+        cell = Cell.new
+        (1..6).each { |n| cell.remove!(n) }
+        expect(cell.solve!(8)).to eq true
+      end
     end
 
     context "argument is not found in possibilities" do
@@ -90,6 +118,12 @@ describe Cell do
         cell.solve!(5)
         expect(cell.possibilities).to eq [7, 8, 9]
       end
+
+      it "returns false" do
+        cell = Cell.new
+        (1..6).each { |n| cell.remove!(n) }
+        expect(cell.solve!(5)).to eq false
+      end
     end
 
     context "cell is already solved" do
@@ -97,6 +131,11 @@ describe Cell do
         cell = Cell.new(4)
         cell.solve!(8)
         expect(cell.value).to eq 4
+      end
+
+      it "returns false" do
+        cell = Cell.new(4)
+        expect(cell.solve!(8)).to eq false
       end
     end
   end
