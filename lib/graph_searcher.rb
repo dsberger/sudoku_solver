@@ -12,7 +12,7 @@ class GraphSearcher
   def solve
     return matrix if solved?
 
-    queue = valid_next_iterations
+    queue = valid_next_iterations.shuffle
     complete_solution = false
 
     until complete_solution || queue.empty?
