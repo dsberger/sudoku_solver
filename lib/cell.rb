@@ -1,7 +1,5 @@
 class Cell
 
-  attr_writer :row, :column, :subgroup
-
   def initialize(value = nil)
     @state = set_state(value)
   end
@@ -15,12 +13,7 @@ class Cell
   end
 
   def remove!(n)
-    unless solved?
-      state.delete(n)
-      row.remove!(n)
-      column.remove!(n)
-      subgroup.remove!(n)
-    end
+    state.delete(n) unless solved?
   end
 
   def solve!(n)
@@ -29,7 +22,7 @@ class Cell
 
   private
 
-  attr_reader :state, :row, :column, :subgroup
+  attr_reader :state
 
   def solved?
     state.length == 1
