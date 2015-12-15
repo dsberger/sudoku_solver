@@ -1,4 +1,5 @@
 require "sudoku_solver"
+require "graph_searcher"
 
 describe SudokuSolver do
   describe ".solve" do
@@ -26,7 +27,7 @@ describe SudokuSolver do
       expect(SudokuSolver.solve(puzzle)).to eq(easy_solution)
     end
 
-    xit "solves an hard puzzle" do
+    it "solves an hard puzzle" do
       puzzle = open_sudoku_puzzle("hard")
 
       expect(SudokuSolver.solve(puzzle)).to eq(hard_solution)

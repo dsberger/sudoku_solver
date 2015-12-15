@@ -16,9 +16,14 @@ class BlockOfNine
     made_progress
   end
 
+
   private
 
   attr_reader :cells, :made_progress
+
+  def sweep_clean!
+    found_values.each { |n| remove_from_unsolved_cells(n) }
+  end
 
   def remove_from_unsolved_cells(n)
     removed = []
@@ -26,14 +31,6 @@ class BlockOfNine
       removed << cell.remove!(n)
     end
     @made_progress = removed.any? unless made_progress
-  end
-
-  def found(n)
-    found_values.include?(n)
-  end
-
-  def sweep_clean!
-    found_values.each { |n| remove_from_unsolved_cells(n) }
   end
 
   def heat_seek!
@@ -50,8 +47,8 @@ class BlockOfNine
     @made_progress = solved unless made_progress
   end
 
-  def unfound_values
-    (1..9).to_a - found_values
+  def found(n)
+    found_values.include?(n)
   end
 
   def cells_that_might_be(n)
@@ -60,6 +57,10 @@ class BlockOfNine
 
   def found_values
     solved_cells.map { |cell| cell.value }.sort
+  end
+
+  def unfound_values
+    (1..9).to_a - found_values
   end
 
   def unsolved_cells

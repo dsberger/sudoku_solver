@@ -1,6 +1,3 @@
-require_relative "../lib/graph_searcher"
-require_relative "../lib/grid"
-
 class SudokuSolver
 
   def initialize(matrix)
@@ -16,6 +13,7 @@ class SudokuSolver
     matrix = GraphSearcher.new(duped_matrix).result
     PuzzleFormatter.new(matrix).puzzle_string
   end
+
 
   private
 

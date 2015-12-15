@@ -9,19 +9,17 @@ class SolutionValidator
   end
 
   def valid?
-    valid_rows? &&
-    valid_columns? &&
-    valid_subgroups?
+    valid_rows? && valid_columns? && valid_subgroups?
   end
 
   def complete?
     matrix.map { |row| row.include?(nil) }.none?
   end
 
+
   private
 
   attr_reader :matrix
-
 
   def valid_rows?
     ArrayValidator.new(matrix).valid?

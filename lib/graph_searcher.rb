@@ -4,40 +4,35 @@ class GraphSearcher
 
   def initialize(matrix)
     @matrix = matrix
+    grid = Grid.new_from_matrix(deep_dup(matrix))
+    @possibilities_matrix = grid.possibilities_matrix
+    @values_matrix = grid.values_matrix
     @result = solve
   end
 
+
   private
-
-  def solve
-
-    grid = Grid.new_from_matrix(deep_dup(matrix))
-    grid.solve!
-
-    @possibilities_matrix = grid.possibilities_matrix
-    @values_matrix = grid.values_matrix
-
-    validator = SolutionValidator.new(values_matrix)
-
-    if validator.solved?
-      values_matrix
-    elsif validator.valid?
-      process_queue_of_next_iterations
-    else
-      false
-    end
-
-  end
 
   attr_reader :matrix, :values_matrix, :possibilities_matrix
 
+  # In Railsy fashion, this returns either a solved matrx or false.
+  def solve
+    if validator.solved?
+      values_matrix                     # <= solved matrix
+    elsif validator.valid?
+      process_queue_of_next_iterations  # <= solved matrix or false
+    else
+      false                             # <= false
+    end
+  end
+
   def process_queue_of_next_iterations
-    queue = valid_next_iterations.shuffle
+    queue = valid_next_iterations
     complete_solution = false
 
     until complete_solution || queue.empty?
-      active_puzzle = queue.shift
-      complete_solution = active_puzzle.result
+      active_graph_search = queue.shift
+      complete_solution = active_graph_search.result
     end
 
     complete_solution
@@ -51,16 +46,13 @@ class GraphSearcher
 
   def valid_next_iterations
     x, y = coords_of_first_empty_cell
-    queue = []
-
     possible_values = possibilities_matrix[x][y]
-    possible_values.each do |num|
+
+    possible_values.each_with_object([]) do |num, queue|
       temp_values_matrix = deep_dup(values_matrix)
       temp_values_matrix[x][y] = num
       queue << GraphSearcher.new(temp_values_matrix)
     end
-
-    queue
   end
 
   def coords_of_first_empty_cell
@@ -69,5 +61,9 @@ class GraphSearcher
         return [row, col] if values_matrix[row][col].nil?
       end
     end
+  end
+
+  def validator
+    SolutionValidator.new(values_matrix)
   end
 end

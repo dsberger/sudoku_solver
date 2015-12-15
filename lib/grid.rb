@@ -1,12 +1,11 @@
 class Grid
 
-  # private_class_method :new
-
   def initialize(cell_matrix:, rows:, columns:, subgroups:)
     @cell_matrix = cell_matrix
     @rows = rows
     @columns = columns
     @subgroups = subgroups
+    solve!
   end
 
   def self.new_from_matrix(matrix)
@@ -20,6 +19,19 @@ class Grid
     )
   end
 
+  def values_matrix
+    cell_matrix.map { |row| row.map { |cell| cell.value } }
+  end
+
+  def possibilities_matrix
+    cell_matrix.map { |row| row.map { |cell| cell.possibilities } }
+  end
+
+
+  private
+
+  attr_reader :cell_matrix, :rows, :columns, :subgroups
+
   def solve!
     @making_progress = false
     loop do
@@ -32,22 +44,6 @@ class Grid
       break unless @making_progress
     end
   end
-
-  def values_matrix
-    cell_matrix.map do |row|
-      row.map { |cell| cell.value }
-    end
-  end
-
-  def possibilities_matrix
-    cell_matrix.map do |row|
-      row.map { |cell| cell.possibilities }
-    end
-  end
-
-  private
-
-  attr_reader :cell_matrix, :rows, :columns, :subgroups
 
   def hit_all_rows!
     success = []

@@ -11,6 +11,7 @@ class PuzzleFormatter
     array_of_row_strings.join("\n")
   end
 
+
   private
 
   attr_reader :matrix
@@ -27,10 +28,9 @@ class PuzzleFormatter
   end
 
   def string_format(row_array)
-    first_third = row_array[0..2].join(" ")
-    middle_third = row_array[3..5].join(" ")
-    last_third = row_array[6..8].join(" ")
-    [first_third, middle_third, last_third].join(" |")
+    [ row_array[0..2].join(" "),
+      row_array[3..5].join(" "),
+      row_array[6..8].join(" ") ].join(" |")
   end
 
   def replace_nil_with_zero(row_array)

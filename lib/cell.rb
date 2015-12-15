@@ -24,6 +24,7 @@ class Cell
     able_to_solve
   end
 
+
   private
 
   attr_reader :state
