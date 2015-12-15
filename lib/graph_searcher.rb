@@ -1,4 +1,7 @@
+require_relative "../modules/matrix_tools"
+
 class GraphSearcher
+  include MatrixTools
 
   attr_reader :result
 
@@ -36,12 +39,6 @@ class GraphSearcher
     end
 
     complete_solution
-  end
-
-  def deep_dup(any_matrix)
-    any_matrix.each_with_object([]) do |row, dupe|
-      dupe << row.dup
-    end
   end
 
   def valid_next_iterations

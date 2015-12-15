@@ -5,6 +5,12 @@ class BlockOfNine
     @made_progress = false
   end
 
+  def self.new_from(nine_cells)
+    block = BlockOfNine.new
+    nine_cells.each { |cell| block.add_cell(cell) }
+    block
+  end
+
   def add_cell(cell)
     @cells << cell
   end

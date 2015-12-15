@@ -1,4 +1,7 @@
+require_relative "../modules/matrix_tools"
+
 class SudokuSolver
+  include MatrixTools
 
   def initialize(matrix)
     @matrix = matrix
@@ -20,9 +23,7 @@ class SudokuSolver
   attr_accessor :matrix
 
   def duped_matrix
-    matrix.each_with_object([]) do |row, dupe|
-      dupe << row.dup
-    end
+    deep_dup(matrix)
   end
 
 end

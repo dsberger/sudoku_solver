@@ -1,4 +1,7 @@
+require_relative "../modules/matrix_tools"
+
 class ArrayValidator
+  include MatrixTools
 
   def initialize(matrix)
     @matrix = matrix
@@ -13,8 +16,4 @@ class ArrayValidator
 
   attr_reader :matrix
 
-  def has_duplicates?(test_array)
-    test_array = test_array.compact
-    test_array.length != test_array.uniq.length
-  end
 end
