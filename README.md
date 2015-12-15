@@ -1,6 +1,6 @@
 # Sudoku Solver
 
-This is based on an Upcase project that I had a lot of fun with. Two of the tests in the `sudoku_solver_spec` file, and the sudoku files, are their creations. Everything in `lib` and the rest of what's in `spec` is my code.
+This is based on an Upcase project that I had a lot of fun with. Two of the tests in the `sudoku_solver_spec` file, and the `.sudoku` files, are their creations. Everything in `lib` and the rest of what's in `spec` is my code.
 
 The core of the solution is a GraphSearcher object that:
 
