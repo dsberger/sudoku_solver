@@ -1,4 +1,4 @@
-require_relative '../lib/array_validator'
+require_relative '../../lib/array_validator'
 
 describe ArrayValidator do
 

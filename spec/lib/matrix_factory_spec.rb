@@ -1,4 +1,4 @@
-require_relative '../lib/matrix_factory'
+require_relative '../../lib/matrix_factory'
 
 describe MatrixFactory do
   describe "#matrix" do

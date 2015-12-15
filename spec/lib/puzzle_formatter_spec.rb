@@ -1,4 +1,4 @@
-require_relative '../lib/puzzle_formatter'
+require_relative '../../lib/puzzle_formatter'
 
 describe PuzzleFormatter do
   it "formats a matrix correctly" do

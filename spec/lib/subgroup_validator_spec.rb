@@ -1,4 +1,4 @@
-require_relative '../lib/subgroup_validator'
+require_relative '../../lib/subgroup_validator'
 
 describe SubgroupValidator do
 

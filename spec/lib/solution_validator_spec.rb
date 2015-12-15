@@ -1,4 +1,4 @@
-require_relative "../lib/solution_validator"
+require_relative "../../lib/solution_validator"
 
 describe SolutionValidator do
 
