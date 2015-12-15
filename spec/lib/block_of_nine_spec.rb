@@ -1,4 +1,4 @@
-require_relative '../../lib/block_of_nine'
+require "block_of_nine"
 
 describe BlockOfNine do
 

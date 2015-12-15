@@ -1,22 +1,13 @@
-require_relative '../../lib/puzzle_formatter'
+require "puzzle_formatter"
+require_relative "../helpers"
 
 describe PuzzleFormatter do
-  it "formats a matrix correctly" do
-    input = [
-      [ 8, 5, nil, nil, nil, 2, 4, nil, nil],
-      [ 7, 2, nil, nil, nil, nil, nil, nil, 9],
-      [ nil, nil, 4, nil, nil, nil, nil, nil, nil],
-      [ nil, nil, nil, 1, nil, 7, nil, nil, 2],
-      [ 3, nil, 5, nil, nil, nil, 9, nil, nil],
-      [ nil, 4, nil, nil, nil, nil, nil, nil, nil],
-      [ nil, nil, nil, nil, 8, nil, nil, 7, nil],
-      [ nil, 1, 7, nil, nil, nil, nil, nil, nil],
-      [ nil, nil, nil, nil, 3, 6, nil, 4, nil]
-    ]
+  include Helpers
 
+  it "formats a matrix correctly" do
     file = File.read("spec/fixtures/valid_incomplete.sudoku")
     file.chomp!
-    formatter = PuzzleFormatter.new(input)
+    formatter = PuzzleFormatter.new(valid_incomplete)
 
     expect(formatter.puzzle_string).to eq file
   end

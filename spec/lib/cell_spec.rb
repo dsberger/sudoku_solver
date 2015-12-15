@@ -1,4 +1,4 @@
-require_relative "../../lib/cell"
+require "cell"
 
 describe Cell do
 
