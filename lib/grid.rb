@@ -44,9 +44,9 @@ class Grid
       column_progress = hit_all!(:columns)
       subgroup_progress = hit_all!(:subgroups)
 
-      making_progress =  row_progress ||
-                          column_progress ||
-                          subgroup_progress
+      making_progress = row_progress ||
+                        column_progress ||
+                        subgroup_progress
 
       break unless making_progress
     end
