@@ -14,12 +14,10 @@ class Grid
     columns = StraightLineCreator.new(cell_matrix.transpose).lines
     subgroups = SubgroupCreator.new(cell_matrix).subgroups
 
-    Grid.new(
-      cell_matrix: cell_matrix,
-      rows: rows,
-      columns: columns,
-      subgroups: subgroups
-    )
+    Grid.new( cell_matrix: cell_matrix,
+              rows: rows,
+              columns: columns,
+              subgroups: subgroups )
   end
 
   def values_matrix
@@ -46,11 +44,11 @@ class Grid
       column_progress = hit_all!(:columns)
       subgroup_progress = hit_all!(:subgroups)
 
-      @making_progress =  row_progress ||
+      making_progress =  row_progress ||
                           column_progress ||
                           subgroup_progress
 
-      break unless @making_progress
+      break unless making_progress
     end
   end
 
